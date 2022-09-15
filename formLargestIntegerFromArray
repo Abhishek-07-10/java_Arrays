@@ -1,0 +1,26 @@
+
+public class Solution {
+    public static void formNumber(int arr[], int n){
+        for(int i = 0 ; i < n ; i++){
+            for(int j = i+1 ; j < n ; j++){
+                String str1 =""+ arr[i]+arr[j];
+                String str2 = "" + arr[j]+arr[i];
+                if(Integer.parseInt(str1) < Integer.parseInt(str2)){
+                    int temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+        }
+        for( int i = 0 ; i < n ; i++){
+            System.out.print(arr[i]); 
+        }
+    }
+
+    public static void main(String[] args) {
+        
+        int arr[] = {4, 46, 8, 9};
+        int n = arr.length;
+        formNumber(arr, n);
+    }
+}
