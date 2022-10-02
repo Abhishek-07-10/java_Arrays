@@ -1,0 +1,42 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+    public static int palindrome2DArray(int arr[][], int n , int m){
+        int count = 0;
+       
+        for(int i = 0 ; i < n ; i++){
+             boolean ans  = false;
+            for(int j = 0 ; j < m ; j++){
+                if(arr[i][j] == arr[i][m-j-1]){
+                    ans = true;
+                }
+                else{
+                    ans = false;
+                    break;
+                }
+            }
+            if(ans){
+                count++;
+            }
+            
+        }
+        return count;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        int arr[][] = new int[n][m];
+        for(int i = 0 ; i < n ; i++){
+            for(int j = 0 ; j < m ; j++){
+                arr[i][j] = sc.nextInt();
+            }
+        }
+        System.out.println(palindrome2DArray(arr , n , m));
+    }
+}
