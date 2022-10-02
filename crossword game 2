@@ -1,0 +1,112 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+    public static  boolean checkRowise(char arr[][], int n, int m, String s){
+
+        for(int i = 0 ; i < n ; i++){
+            for(int j = 0 ; j <= m-s.length() ; j++){
+                int count = 0;
+                
+                if(s.charAt(0) == (char)(arr[i][j])){
+                    count ++;
+                    for(int x = 1 ; x < s.length() ; x++ ){
+                        if(s.charAt(x) == arr[i][j+x]){
+                            count++;
+                        }else{
+                            break;
+                        }
+                    }
+                    if( count == s.length()){
+                        return true;
+                    }
+                }
+
+            }
+        }
+        return false;
+    }
+    
+    public static  boolean checkColumnwise(char arr[][], int n, int m, String s){
+
+        for(int i = 0 ; i < m ; i++){
+            for(int j = 0 ; j <= n-s.length() ; j++){
+                int count = 0;
+                if(s.charAt(0) == (char)(arr[j][i])){
+                    count ++;
+                    for(int x = 1 ; x < s.length() ; x++ ){
+                        if(s.charAt(x) == arr[j+x][i]){
+                            count++;
+                        }else{
+                            break;
+                        }
+                    }
+                    if( count == s.length()){
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+    
+    public static  boolean checkDiagonalWise(char arr[][], int n, int m, String s){
+        
+        for(int i = 0 ; i <= n - s.length() ; i++){
+            for(int j = 0 ; j < m - s.length() ; j++){
+                int count = 0;
+                if(s.charAt(0) == arr[i][j]){
+                    count++;
+                    for(int x = 1 ; x < s.length() ; x++){
+                        if(arr[i+x][j+x] == s.charAt(x)){
+                            count++;
+                        }
+                    }
+                    if( count == s.length()){
+                        return true;
+                    }
+                }
+            }
+        }
+        
+        for(int i = 0 ; i <= n - s.length() ; i++){
+            for(int j = m-1 ; j >=  s.length() ; j--){
+                int count = 0;
+                if(s.charAt(0) == arr[i][j]){
+                    count++;
+                    for(int x = 1 ; x < s.length() ; x++){
+                        if(arr[i+x][j-x] == s.charAt(x)){
+                            count++;
+                        }
+                    }
+                    if( count == s.length()){
+                        return true;
+                    }
+                }
+            }
+        }
+        
+        return false;
+    }
+
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+        int n=scn.nextInt();
+        int m=scn.nextInt();
+        char [][]arr=new char[n][m];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                arr[i][j]=scn.next().charAt(0);
+            }
+        }
+        String str=scn.next();
+    
+        if(checkRowise(arr, n, m, str))System.out.println(checkRowise(arr, n, m, str));
+        else if(checkColumnwise(arr, n, m, str))System.out.println(checkColumnwise(arr, n, m, str));
+        else System.out.println(checkDiagonalWise(arr, n, m, str));
+
+    }
+}
