@@ -1,0 +1,52 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+    public static String[] findWords(String[] words) {
+        String list1 = "qwertyuiop", list2 = "asdfghjkl", list3 = "zxcvbnm";
+        
+        List<String> a = new ArrayList<String>(); 
+        
+        for(int i = 0 ; i < words.length ; i++){
+            String s = words[i];
+            int count1 = 0, count2 = 0, count3 = 0;
+            
+            for(int j = 0 ; j < s.length() ; j++ ){
+                if(list1.contains(Character.toLowerCase(s.charAt(j))+"")){
+                    count1++;
+                }
+                if(list2.contains(Character.toLowerCase(s.charAt(j))+"")){
+                    count2++;
+                }
+                if(list3.contains(Character.toLowerCase(s.charAt(j))+"")){
+                    count3++;
+                }
+                if(count1 == s.length() || count2 == s.length() || count3 == s.length()){
+                    a.add(s);
+                    break;
+                }
+            }  
+        }
+        String[] arr = new String[a.size()];
+        for(int i = 0 ; i < a.size() ; i++){
+            arr[i] = a.get(i);
+        }
+        return arr;
+    }
+
+
+    public static void main(String[] args) {
+        
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        String s[] = new String[n];
+        for(int i = 0 ; i < n ; i++){
+            s[i] = sc.next();
+        }
+        String a[] = findWords(s);
+        System.out.println(Arrays.toString(a));
+    }
+}
