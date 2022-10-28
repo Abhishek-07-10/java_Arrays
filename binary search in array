@@ -1,0 +1,31 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int arr[] = new int[n];
+        for(int i = 0 ; i < n ; i++){
+            arr[i] = sc.nextInt();
+        }
+        int k = sc.nextInt();
+        int x = 0, z = n-1;
+        while(x <= z){
+            int y = x+(z-x)/2;
+            if(arr[y] == k){
+                System.out.println(y);
+                return;
+            }else if(arr[y] > k){
+                z = y-1;
+            }else {
+                x = y+1;
+            }
+        }
+        System.out.println(-1);
+    }
+}
